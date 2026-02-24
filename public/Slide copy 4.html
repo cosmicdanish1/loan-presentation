@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Administration &amp; Governance</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body { margin: 0; padding: 0; overflow: hidden; font-family: 'Inter', sans-serif; }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            background-image: url("https://page.gensparksite.com/slides_images/eb212d46a4ff388f994e1644d74e0071.webp");
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .bg-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(15, 23, 42, 0.9);
+            z-index: 1;
+        }
+        
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 60px 80px;
+        }
+
+        .header-section {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .title-accent {
+            width: 80px;
+            height: 4px;
+            background-color: #34d399;
+            margin: 0 auto 20px auto;
+            border-radius: 2px;
+        }
+
+        /* Grid Layout */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Glass Card Styles */
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Top highlight border for cards */
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .card-blue::before { background-color: #60a5fa; }
+        .card-purple::before { background-color: #a78bfa; }
+        .card-emerald::before { background-color: #34d399; }
+
+        .icon-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 36px;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+
+        /* Icon glows */
+        .icon-circle::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            filter: blur(15px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .theme-blue .icon-circle { background: rgba(59, 130, 246, 0.1); color: #60a5fa; }
+        .theme-blue .icon-circle::after { background: #3b82f6; }
+
+        .theme-purple .icon-circle { background: rgba(139, 92, 246, 0.1); color: #a78bfa; }
+        .theme-purple .icon-circle::after { background: #8b5cf6; }
+
+        .theme-emerald .icon-circle { background: rgba(16, 185, 129, 0.1); color: #34d399; }
+        .theme-emerald .icon-circle::after { background: #10b981; }
+
+        h1 { font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        h3 { font-family: 'Poppins', sans-serif; letter-spacing: 0.02em; }
+
+        .feature-list {
+            text-align: left;
+            width: 100%;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .feature-item i {
+            margin-right: 10px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="bg-overlay"></div>
+<!-- Decorative Background Elements -->
+<div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-overlay filter blur-3xl opacity-10 z-0"></div>
+<div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-overlay filter blur-3xl opacity-10 z-0"></div>
+<div class="content-wrapper">
+<!-- Header -->
+<div class="header-section">
+<div class="title-accent"></div>
+<h1 class="text-5xl font-bold text-white mb-4">Administration &amp; Governance</h1>
+<p class="text-xl text-gray-400 font-light">Secure, flexible control over the entire financial ecosystem.</p>
+</div>
+<!-- Cards Grid -->
+<div class="cards-grid">
+<!-- Card 1: User Management -->
+<div class="feature-card card-blue theme-blue">
+<div class="icon-circle">
+<i class="fa-solid fa-users-gear"></i>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">User Management</h3>
+<p class="text-gray-300 leading-relaxed mb-4">
+                        Comprehensive control over staff access with secure authentication protocols.
+                    </p>
+<div class="feature-list">
+<div class="feature-item">
+<i class="fa-solid fa-circle text-blue-400"></i>
+<span>Role Creation &amp; Hierarchy</span>
+</div>
+<div class="feature-item">
+<i class="fa-solid fa-circle text-blue-400"></i>
+<span>Granular Permission Settings</span>
+</div>
+<div class="feature-item">
+<i class="fa-solid fa-circle text-blue-400"></i>
+<span>Login Session Management</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Business Rules -->
+<div class="feature-card card-purple theme-purple">
+<div class="icon-circle">
+<i class="fa-solid fa-sliders"></i>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">Business Rules</h3>
+<p class="text-gray-300 leading-relaxed mb-4">
+                        Dynamic configuration engine to adapt to changing financial policies instantly.
+                    </p>
+<div class="feature-list">
+<div class="feature-item">
+<i class="fa-solid fa-circle text-purple-400"></i>
+<span>Interest Rate Configuration</span>
+</div>
+<div class="feature-item">
+<i class="fa-solid fa-circle text-purple-400"></i>
+<span>Loan Limit &amp; Eligibility Logic</span>
+</div>
+<div class="feature-item">
+<i class="fa-solid fa-circle text-purple-400"></i>
+<span>Deduction &amp; Penalty Rules</span>
+</div>
+</div>
+</div>
+<!-- Card 3: System Audit -->
+<div class="feature-card card-emerald theme-emerald">
+<div class="icon-circle">
+<i class="fa-solid fa-file-shield"></i>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">System Audit</h3>
+<p class="text-gray-300 leading-relaxed mb-4">
+                        Complete transparency and accountability for every action within the system.
+                    </p>
+<div class="feature-list">
+<div class="feature-item">
+<i class="fa-solid fa-circle text-green-400"></i>
+<span>Detailed Activity Logs</span>
+</div>
+<div class="feature-item">
+<i class="fa-solid fa-circle text-green-400"></i>
+<span>Sensitive Data Change Tracking</span>
+</div>
+<div class="feature-item">
+<i class="fa-solid fa-circle text-green-400"></i>
+<span>Login &amp; IP Monitoring</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

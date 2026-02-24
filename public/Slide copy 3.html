@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Technical Stack Architecture</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body { margin: 0; padding: 0; overflow: hidden; font-family: 'Inter', sans-serif; }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            background-image: url("https://page.gensparksite.com/slides_images/eb212d46a4ff388f994e1644d74e0071.webp");
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .bg-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(15, 23, 42, 0.9);
+            z-index: 1;
+        }
+        
+        /* Layout */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            padding: 40px 60px;
+        }
+
+        .header-section {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            z-index: 20;
+        }
+
+        .diagram-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        /* Glass Cards */
+        .tech-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tech-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Stack Layout Specifics */
+        .stack-column {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: 600px;
+            position: relative;
+        }
+
+        .security-sidebar {
+            width: 200px;
+            margin-left: 24px;
+            display: flex;
+        }
+
+        .security-card {
+            width: 100%;
+            background: rgba(245, 158, 11, 0.05);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 16px;
+        }
+
+        /* Connectors */
+        .connector {
+            position: absolute;
+            width: 2px;
+            background-color: rgba(255, 255, 255, 0.2);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        /* Icons */
+        .icon-wrapper {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        /* Color Themes */
+        .theme-blue .icon-wrapper { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .theme-purple .icon-wrapper { background: rgba(139, 92, 246, 0.2); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.3); }
+        .theme-green .icon-wrapper { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .theme-teal .icon-wrapper { background: rgba(20, 184, 166, 0.2); color: #2dd4bf; border: 1px solid rgba(20, 184, 166, 0.3); }
+        .theme-orange { color: #fbbf24; }
+
+        .layer-label {
+            position: absolute;
+            left: -140px;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: right;
+            width: 120px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .layer-label::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            width: 15px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        h1 { font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        h2 { font-family: 'Poppins', sans-serif; }
+        
+        .tag {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.1);
+            color: #ccc;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="bg-overlay"></div>
+<!-- Title Header -->
+<div class="header-section">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-1 bg-green-500 rounded-full"></div>
+<span class="text-green-400 uppercase tracking-widest text-sm font-bold">Architecture</span>
+</div>
+<h1 class="text-4xl font-bold text-white">Technical Stack (The Engine)</h1>
+<p class="text-gray-400 mt-2 text-lg">Built on modern, enterprise-grade technologies for maximum performance.</p>
+</div>
+<!-- Main Diagram Area -->
+<div class="diagram-container">
+<div class="flex items-stretch h-3/4">
+<!-- Central Stack -->
+<div class="stack-column justify-center">
+<!-- Connector Lines behind cards -->
+<div class="connector" style="top: 15%; height: 70%;"></div>
+<!-- Layer 1: Desktop App -->
+<div class="relative">
+<div class="layer-label">Presentation<br/>Layer</div>
+<div class="tech-card theme-blue">
+<div class="icon-wrapper">
+<i class="fa-brands fa-react"></i>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h2 class="text-xl font-bold text-white">Desktop Client</h2>
+<span class="text-xs font-mono text-blue-300 bg-blue-900 bg-opacity-40 px-2 py-1 rounded">Electron</span>
+</div>
+<p class="text-gray-300 text-sm">
+                                    Native Windows performance wrapping <strong>React.js</strong>. 
+                                    Powered by <strong>Vite</strong> for ultra-fast rendering.
+                                </p>
+<div class="mt-2 flex gap-2">
+<span class="tag">TypeScript</span>
+<span class="tag">Tailwind</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Layer 2: Backend API -->
+<div class="relative">
+<div class="layer-label">Application<br/>Layer</div>
+<div class="tech-card theme-purple">
+<div class="icon-wrapper">
+<i class="fa-brands fa-node-js"></i>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h2 class="text-xl font-bold text-white">Backend Server</h2>
+<span class="text-xs font-mono text-purple-300 bg-purple-900 bg-opacity-40 px-2 py-1 rounded">NestJS</span>
+</div>
+<p class="text-gray-300 text-sm">
+                                    Enterprise-grade Node.js framework. Modular architecture ensuring scalability and maintainability.
+                                </p>
+<div class="mt-2 flex gap-2">
+<span class="tag">REST API</span>
+<span class="tag">Microservices Ready</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Layer 3: Database -->
+<div class="relative">
+<div class="layer-label">Data<br/>Layer</div>
+<div class="tech-card theme-green">
+<div class="icon-wrapper">
+<i class="fa-solid fa-database"></i>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h2 class="text-xl font-bold text-white">Database</h2>
+<span class="text-xs font-mono text-green-300 bg-green-900 bg-opacity-40 px-2 py-1 rounded">PostgreSQL</span>
+</div>
+<p class="text-gray-300 text-sm">
+                                    Robust relational data management using <strong>TypeORM</strong> for type-safe database queries.
+                                </p>
+<div class="mt-2 flex gap-2">
+<span class="tag">ACID Compliant</span>
+<span class="tag">JSONB Support</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Security -->
+<div class="security-sidebar">
+<div class="security-card tech-card">
+<div class="mb-6 theme-orange">
+<div class="icon-wrapper mx-auto mb-4" style="margin-right: 0;">
+<i class="fa-solid fa-shield-halved"></i>
+</div>
+<h2 class="text-xl font-bold text-yellow-400">Security &amp;<br/>Governance</h2>
+</div>
+<div class="w-full px-4 space-y-4">
+<div class="bg-black bg-opacity-20 p-3 rounded-lg border border-yellow-500 border-opacity-20">
+<div class="text-yellow-200 font-semibold text-sm mb-1"><i class="fa-solid fa-key mr-2"></i>Auth</div>
+<p class="text-gray-400 text-xs">JWT Token-based Stateless Authentication</p>
+</div>
+<div class="bg-black bg-opacity-20 p-3 rounded-lg border border-yellow-500 border-opacity-20">
+<div class="text-yellow-200 font-semibold text-sm mb-1"><i class="fa-solid fa-user-lock mr-2"></i>Access</div>
+<p class="text-gray-400 text-xs">Role-Based Access Control (RBAC)</p>
+</div>
+<div class="bg-black bg-opacity-20 p-3 rounded-lg border border-yellow-500 border-opacity-20">
+<div class="text-yellow-200 font-semibold text-sm mb-1"><i class="fa-solid fa-file-contract mr-2"></i>Audit</div>
+<p class="text-gray-400 text-xs">Complete Transaction Logging</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative background blobs -->
+<div class="absolute top-20 right-40 w-64 h-64 bg-purple-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 z-0"></div>
+<div class="absolute bottom-20 left-40 w-64 h-64 bg-blue-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 z-0"></div>
+</div>
+</body>
+</html>

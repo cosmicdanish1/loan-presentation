@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Overview</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body { margin: 0; padding: 0; overflow: hidden; font-family: 'Inter', sans-serif; }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            /* Using the same background image for consistency */
+            background-image: url("https://page.gensparksite.com/slides_images/eb212d46a4ff388f994e1644d74e0071.webp");
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            display: flex;
+        }
+        .bg-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(15, 23, 42, 0.85); /* Darker overlay for content readability */
+            z-index: 1;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            padding: 60px 80px;
+            gap: 60px;
+        }
+        /* Left Panel Styles */
+        .left-panel {
+            flex: 0 0 35%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding-right: 40px;
+        }
+        .title-accent {
+            width: 60px;
+            height: 6px;
+            background-color: #34d399; /* Emerald-400 */
+            border-radius: 3px;
+            margin-bottom: 24px;
+        }
+        
+        /* Right Panel Styles */
+        .right-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        /* Glassmorphism Card */
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .icon-box {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 28px;
+        }
+        
+        /* Specific Icon Colors */
+        .icon-blue { background-color: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.2); }
+        .icon-green { background-color: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.2); }
+        .icon-purple { background-color: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(167, 139, 250, 0.2); }
+
+        h1 { font-family: 'Poppins', sans-serif; }
+        h3 { font-family: 'Poppins', sans-serif; letter-spacing: 0.02em; }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="bg-overlay"></div>
+<!-- Decorative Background Element -->
+<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-10 z-0"></div>
+<div class="absolute left-10 top-10 w-64 h-64 bg-green-500 rounded-full mix-blend-screen filter blur-3xl opacity-10 z-0"></div>
+<div class="content-wrapper">
+<!-- Left Panel: Title & Context -->
+<div class="left-panel">
+<div class="title-accent"></div>
+<h1 class="text-5xl font-bold text-white mb-6 leading-tight">
+                    Project<br/>Overview
+                </h1>
+<p class="text-xl text-gray-300 font-light leading-relaxed">
+                    Transforming traditional credit operations into a streamlined, digital-first ecosystem.
+                </p>
+<div class="mt-12 flex items-center gap-4 opacity-70">
+<div class="w-12 h-12 rounded-full border border-gray-500 flex items-center justify-center">
+<i class="fa-solid fa-arrow-right text-gray-300"></i>
+</div>
+<span class="text-sm text-gray-400 uppercase tracking-widest font-semibold">Key Highlights</span>
+</div>
+</div>
+<!-- Right Panel: 3 Key Points -->
+<div class="right-panel">
+<!-- Card 1: Objective -->
+<div class="info-card">
+<div class="icon-box icon-blue">
+<i class="fa-solid fa-laptop-code"></i>
+</div>
+<div>
+<h3 class="text-2xl font-semibold text-white mb-2">Core Objective</h3>
+<p class="text-gray-300 text-lg leading-relaxed">
+                            To digitize end-to-end operations of credit societies, eliminating paper trails and establishing a unified digital workflow.
+                        </p>
+</div>
+</div>
+<!-- Card 2: Vision -->
+<div class="info-card">
+<div class="icon-box icon-green">
+<i class="fa-solid fa-bullseye"></i>
+</div>
+<div>
+<h3 class="text-2xl font-semibold text-white mb-2">Strategic Vision</h3>
+<p class="text-gray-300 text-lg leading-relaxed">
+                            Reduce manual errors to near-zero, ensure absolute financial accuracy, and enhance member trust through transparent communication.
+                        </p>
+</div>
+</div>
+<!-- Card 3: Target -->
+<div class="info-card">
+<div class="icon-box icon-purple">
+<i class="fa-solid fa-users-viewfinder"></i>
+</div>
+<div>
+<h3 class="text-2xl font-semibold text-white mb-2">Target Audience</h3>
+<p class="text-gray-300 text-lg leading-relaxed">
+                            Primary focus on Thrift &amp; Credit Societies and Employee Credit Unions seeking modernization and scalability.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

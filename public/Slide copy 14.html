@@ -1,0 +1,410 @@
+!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Experience</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=Roboto+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body { margin: 0; padding: 0; overflow: hidden; font-family: 'Inter', sans-serif; }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            background-image: url("https://page.gensparksite.com/slides_images/eb212d46a4ff388f994e1644d74e0071.webp");
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .bg-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(15, 23, 42, 0.92);
+            z-index: 1;
+        }
+        
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            padding: 50px 80px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-section {
+            margin-bottom: 30px;
+        }
+
+        .title-accent {
+            width: 80px;
+            height: 4px;
+            background-color: #34d399;
+            margin-bottom: 16px;
+            border-radius: 2px;
+        }
+
+        /* Layout */
+        .main-content {
+            display: flex;
+            gap: 60px;
+            height: 100%;
+            align-items: center;
+        }
+
+        .left-panel {
+            flex: 0 0 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .right-panel {
+            flex: 1;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Feature Cards */
+        .ux-feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid transparent;
+            padding: 24px;
+            border-radius: 0 16px 16px 0;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .ux-feature-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateX(10px);
+        }
+
+        .card-active-blue { border-left-color: #60a5fa; }
+        .card-active-purple { border-left-color: #a78bfa; }
+        .card-active-green { border-left-color: #34d399; }
+
+        .feature-icon-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 18px;
+        }
+
+        .icon-blue { background: rgba(96, 165, 250, 0.1); color: #60a5fa; }
+        .icon-purple { background: rgba(167, 139, 250, 0.1); color: #a78bfa; }
+        .icon-green { background: rgba(52, 211, 153, 0.1); color: #34d399; }
+
+        /* Mockup Window Styling */
+        .mockup-window {
+            width: 100%;
+            height: 420px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+            transition: transform 0.5s ease;
+        }
+
+        .mockup-window:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+        }
+
+        .window-header {
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 8px;
+        }
+
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #10b981; }
+
+        .window-body {
+            flex: 1;
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+            background: rgba(15, 23, 42, 0.4);
+        }
+
+        /* Mock Sidebar */
+        .mock-sidebar {
+            width: 60px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px 0;
+            gap: 20px;
+        }
+
+        .sidebar-item {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-item-active {
+            background: #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Mock Content */
+        .mock-content {
+            flex: 1;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            gap: 16px;
+        }
+
+        .mock-nav {
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-bar {
+            width: 200px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mock-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .glass-panel-mock {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Keyboard Shortcut Badge */
+        .kbd-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 20;
+            backdrop-filter: blur(4px);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .kbd-key {
+            background: linear-gradient(to bottom, #334155, #1e293b);
+            border: 1px solid #475569;
+            border-bottom-width: 3px;
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 12px;
+            color: #fff;
+            box-shadow: 0 2px 0 rgba(0,0,0,0.5);
+        }
+
+        /* Floating elements for Responsive */
+        .device-icon {
+            position: absolute;
+            background: #0f172a;
+            border: 1px solid rgba(52, 211, 153, 0.5);
+            color: #34d399;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .device-desktop { top: -20px; right: -20px; }
+        .device-mobile { bottom: -20px; left: -20px; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 { font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        h3 { font-family: 'Poppins', sans-serif; letter-spacing: 0.02em; }
+
+        .glow-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15), transparent 70%);
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="bg-overlay"></div>
+<!-- Background Accents -->
+<div class="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-overlay filter blur-3xl opacity-10 z-0"></div>
+<div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-overlay filter blur-3xl opacity-10 z-0"></div>
+<div class="content-wrapper">
+<!-- Header -->
+<div class="header-section">
+<div class="title-accent"></div>
+<h1 class="text-4xl font-bold text-white mb-2">User Experience</h1>
+<p class="text-xl text-gray-400 font-light">A modern interface designed for speed, clarity, and aesthetics.</p>
+</div>
+<div class="main-content">
+<!-- Left Column: Features -->
+<div class="left-panel">
+<!-- Feature 1 -->
+<div class="ux-feature-card card-active-blue">
+<div class="feature-icon-wrapper">
+<div class="feature-icon icon-blue">
+<i class="fa-solid fa-layer-group"></i>
+</div>
+<h3 class="text-xl font-bold text-white">Glassmorphism UI</h3>
+</div>
+<p class="text-sm text-gray-300 leading-relaxed">
+                        Premium visual design utilizing depth, transparency, and blur effects to create a hierarchy that reduces cognitive load and enhances focus on data.
+                    </p>
+</div>
+<!-- Feature 2 -->
+<div class="ux-feature-card card-active-purple">
+<div class="feature-icon-wrapper">
+<div class="feature-icon icon-purple">
+<i class="fa-regular fa-keyboard"></i>
+</div>
+<h3 class="text-xl font-bold text-white">Power User Shortcuts</h3>
+</div>
+<p class="text-sm text-gray-300 leading-relaxed">
+                        Navigate the entire system without lifting your hands from the keyboard. Global shortcuts for saving, printing, and switching modules.
+                    </p>
+</div>
+<!-- Feature 3 -->
+<div class="ux-feature-card card-active-green">
+<div class="feature-icon-wrapper">
+<div class="feature-icon icon-green">
+<i class="fa-solid fa-laptop-code"></i>
+</div>
+<h3 class="text-xl font-bold text-white">Responsive Layout</h3>
+</div>
+<p class="text-sm text-gray-300 leading-relaxed">
+                        Optimized grid system that adapts gracefully to various screen sizes, from high-DPI monitors to compact laptop screens.
+                    </p>
+</div>
+</div>
+<!-- Right Column: Visual Mockup -->
+<div class="right-panel">
+<div class="mockup-window">
+<div class="glow-effect"></div>
+<!-- Window Header -->
+<div class="window-header">
+<div class="dot dot-red"></div>
+<div class="dot dot-yellow"></div>
+<div class="dot dot-green"></div>
+<div class="ml-4 w-64 h-2 bg-gray-600 rounded-full opacity-20"></div>
+</div>
+<!-- Window Body -->
+<div class="window-body">
+<!-- Sidebar -->
+<div class="mock-sidebar">
+<div class="sidebar-item sidebar-item-active"></div>
+<div class="sidebar-item"></div>
+<div class="sidebar-item"></div>
+<div class="sidebar-item"></div>
+</div>
+<!-- Content -->
+<div class="mock-content">
+<!-- Nav -->
+<div class="mock-nav">
+<div class="w-32 h-4 bg-white opacity-10 rounded"></div>
+<div class="search-bar"></div>
+</div>
+<!-- Grid -->
+<div class="mock-grid">
+<div class="glass-panel-mock row-span-2 p-4">
+<div class="w-24 h-3 bg-blue-400 opacity-40 rounded mb-4"></div>
+<div class="w-full h-24 bg-gradient-to-r from-blue-500 to-transparent opacity-10 rounded mb-2"></div>
+<div class="w-3/4 h-2 bg-white opacity-10 rounded mb-2"></div>
+<div class="w-1/2 h-2 bg-white opacity-10 rounded"></div>
+</div>
+<div class="glass-panel-mock p-4">
+<div class="w-16 h-3 bg-purple-400 opacity-40 rounded mb-2"></div>
+<div class="w-8 h-8 rounded-full bg-purple-500 opacity-20 mb-2"></div>
+</div>
+<div class="glass-panel-mock p-4 flex items-center justify-center">
+<div class="w-12 h-12 rounded-full border-4 border-green-500 border-opacity-20 border-t-green-500"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Elements -->
+<div class="kbd-badge">
+<span class="text-xs text-gray-400 font-medium">SAVE</span>
+<span class="kbd-key">Ctrl</span>
+<span class="text-white text-xs">+</span>
+<span class="kbd-key">S</span>
+</div>
+<div class="device-icon device-desktop">
+<i class="fa-solid fa-desktop"></i>
+</div>
+<div class="device-icon device-mobile">
+<i class="fa-solid fa-mobile-screen"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

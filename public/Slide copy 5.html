@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Member Master (The Foundation)</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body { margin: 0; padding: 0; overflow: hidden; font-family: 'Inter', sans-serif; }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            background-image: url("https://page.gensparksite.com/slides_images/eb212d46a4ff388f994e1644d74e0071.webp");
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .bg-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(15, 23, 42, 0.9);
+            z-index: 1;
+        }
+        
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            padding: 50px 80px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-section {
+            margin-bottom: 40px;
+        }
+
+        .title-accent {
+            width: 60px;
+            height: 4px;
+            background-color: #34d399;
+            border-radius: 2px;
+            margin-bottom: 16px;
+        }
+
+        /* Main Flex Layout */
+        .main-layout {
+            display: flex;
+            flex: 1;
+            gap: 60px;
+            align-items: center;
+        }
+
+        /* Left Column: Visual */
+        .left-visual {
+            flex: 0 0 40%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-card {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            font-size: 40px;
+            color: white;
+        }
+
+        .data-node {
+            position: absolute;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            padding: 10px 16px;
+            border-radius: 12px;
+            color: #34d399;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .node-line {
+            position: absolute;
+            background: rgba(52, 211, 153, 0.2);
+            z-index: 0;
+        }
+
+        /* Right Column: Features */
+        .right-features {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            justify-content: center;
+        }
+
+        .feature-row {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .feature-row:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .icon-teal { background: rgba(20, 184, 166, 0.15); color: #2dd4bf; border: 1px solid rgba(20, 184, 166, 0.25); }
+        .icon-indigo { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.25); }
+        .icon-rose { background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.25); }
+
+        h1 { font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        h3 { font-family: 'Poppins', sans-serif; letter-spacing: 0.02em; }
+
+        .stat-badge {
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 10px;
+            color: #cbd5e1;
+            margin-top: 8px;
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="bg-overlay"></div>
+<!-- Decorative Background Elements -->
+<div class="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-blue-900 to-transparent opacity-10 z-0"></div>
+<div class="content-wrapper">
+<!-- Header -->
+<div class="header-section">
+<div class="title-accent"></div>
+<h1 class="text-4xl font-bold text-white mb-2">Member Master</h1>
+<p class="text-xl text-gray-400 font-light">The foundational database for the entire credit ecosystem.</p>
+</div>
+<div class="main-layout">
+<!-- Left Column: Visual Data Flow -->
+<div class="left-visual">
+<!-- Connecting Lines -->
+<div class="node-line w-px h-32 top-10 left-1/2 transform -translate-x-1/2"></div>
+<div class="node-line w-32 h-px top-1/2 left-10"></div>
+<div class="node-line w-32 h-px top-1/2 right-10"></div>
+<div class="node-line w-px h-32 bottom-10 left-1/2 transform -translate-x-1/2"></div>
+<!-- Floating Nodes -->
+<div class="data-node top-20 left-10">
+<i class="fa-solid fa-camera"></i> Photo
+                </div>
+<div class="data-node top-20 right-10">
+<i class="fa-solid fa-signature"></i> Signature
+                </div>
+<div class="data-node bottom-20 left-0">
+<i class="fa-solid fa-file-contract"></i> Documents
+                </div>
+<div class="data-node bottom-20 right-0">
+<i class="fa-solid fa-fingerprint"></i> Biometric
+                </div>
+<!-- Central Card -->
+<div class="profile-card text-center">
+<div class="profile-avatar">
+<i class="fa-regular fa-user"></i>
+</div>
+<div class="text-white text-lg font-bold mb-1">Member Profile</div>
+<div class="text-blue-300 text-sm mb-4">ID: BIC-2026-8842</div>
+<div class="flex justify-between border-t border-white border-opacity-10 pt-4">
+<div class="text-left">
+<div class="text-xs text-gray-400">Status</div>
+<div class="text-xs text-green-400 font-semibold">Active</div>
+</div>
+<div class="text-right">
+<div class="text-xs text-gray-400">Join Date</div>
+<div class="text-xs text-white">Jan 2024</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Features -->
+<div class="right-features">
+<!-- Feature 1: KYC -->
+<div class="feature-row">
+<div class="icon-box icon-teal">
+<i class="fa-solid fa-id-card-clip"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-2">KYC Digitization</h3>
+<p class="text-gray-300 text-sm leading-relaxed mb-2">
+                            Comprehensive digital onboarding with high-resolution scanning of member photos, signatures, and identity documents.
+                        </p>
+<div class="flex gap-2">
+<span class="stat-badge"><i class="fa-solid fa-check mr-1"></i>Paperless</span>
+<span class="stat-badge"><i class="fa-solid fa-check mr-1"></i>Secure Storage</span>
+</div>
+</div>
+</div>
+<!-- Feature 2: Category Management -->
+<div class="feature-row">
+<div class="icon-box icon-indigo">
+<i class="fa-solid fa-sitemap"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-2">Category Management</h3>
+<p class="text-gray-300 text-sm leading-relaxed mb-2">
+                            Structured categorization by Caste, Designation, and Office location to enable granular reporting and policy application.
+                        </p>
+<div class="flex gap-2">
+<span class="stat-badge"><i class="fa-solid fa-building mr-1"></i>Office-wise</span>
+<span class="stat-badge"><i class="fa-solid fa-briefcase mr-1"></i>Designation</span>
+</div>
+</div>
+</div>
+<!-- Feature 3: Balance Tracking -->
+<div class="feature-row">
+<div class="icon-box icon-rose">
+<i class="fa-solid fa-scale-balanced"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-2">360° Balance Tracking</h3>
+<p class="text-gray-300 text-sm leading-relaxed mb-2">
+                            Real-time unified view of member's financial standing, including Share Capital, Active Loans, and Deposit balances.
+                        </p>
+<div class="flex gap-2">
+<span class="stat-badge"><i class="fa-solid fa-chart-pie mr-1"></i>Shares</span>
+<span class="stat-badge"><i class="fa-solid fa-hand-holding-dollar mr-1"></i>Loans</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

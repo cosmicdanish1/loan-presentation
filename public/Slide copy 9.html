@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Automated Demand &amp; Recovery</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body { margin: 0; padding: 0; overflow: hidden; font-family: 'Inter', sans-serif; }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #0f172a;
+            background-image: url("https://page.gensparksite.com/slides_images/eb212d46a4ff388f994e1644d74e0071.webp");
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .bg-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(15, 23, 42, 0.9);
+            z-index: 1;
+        }
+        
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            padding: 50px 80px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-section {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .title-accent {
+            width: 80px;
+            height: 4px;
+            background-color: #34d399;
+            margin: 0 auto 16px auto;
+            border-radius: 2px;
+        }
+
+        /* Process Flow Container */
+        .process-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Distributes the 3 items evenly */
+            position: relative;
+            padding: 0 60px; /* Increased padding for 3 items to center them better */
+        }
+
+        /* Connecting Line Background */
+        .connection-line {
+            position: absolute;
+            top: 35%; /* Aligned with icon centers */
+            left: 100px;
+            right: 100px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.15);
+            z-index: 0;
+        }
+
+        /* Step Card */
+        .step-card {
+            width: 300px; /* Slightly wider than 4-col layout */
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Step Icon Circle */
+        .icon-circle {
+            width: 90px; /* Slightly larger */
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 36px;
+            border: 4px solid #0f172a; /* Matches background to "cut" the line */
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05);
+            background-color: #1e293b;
+            color: white;
+        }
+
+        /* Themes for Steps */
+        .step-1 .icon-circle { background-color: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
+        .step-2 .icon-circle { background-color: #8b5cf6; box-shadow: 0 0 20px rgba(139, 92, 246, 0.4); }
+        .step-3 .icon-circle { background-color: #10b981; box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); }
+
+        /* Step Content Box */
+        .step-content {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px 20px;
+            width: 100%;
+            min-height: 180px;
+            position: relative;
+        }
+
+        /* Number Badge */
+        .step-number {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0f172a;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 12px;
+            z-index: 3;
+        }
+
+        .step-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            color: white;
+            margin-bottom: 12px;
+            margin-top: 5px;
+        }
+
+        .step-desc {
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* Arrows between steps */
+        .arrow-indicator {
+            position: absolute;
+            top: 35%;
+            font-size: 18px;
+            color: rgba(255,255,255,0.3);
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+        
+        /* Revised positions for 3 items */
+        .arrow-1 { left: 32%; }
+        .arrow-2 { left: 66%; }
+
+        h1 { font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        
+        /* Bottom highlight bar for cards */
+        .step-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            border-radius: 2px;
+            opacity: 0.7;
+        }
+
+        .step-1 .step-content::after { background-color: #3b82f6; }
+        .step-2 .step-content::after { background-color: #8b5cf6; }
+        .step-3 .step-content::after { background-color: #10b981; }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="bg-overlay"></div>
+<!-- Decorative Background Elements -->
+<div class="absolute top-20 left-10 w-64 h-64 bg-blue-500 rounded-full mix-blend-overlay filter blur-3xl opacity-10 z-0"></div>
+<div class="absolute bottom-20 right-10 w-64 h-64 bg-green-500 rounded-full mix-blend-overlay filter blur-3xl opacity-10 z-0"></div>
+<div class="content-wrapper">
+<!-- Header -->
+<div class="header-section">
+<div class="title-accent"></div>
+<h1 class="text-4xl font-bold text-white mb-3">Automated Demand &amp; Recovery</h1>
+<p class="text-xl text-gray-400 font-light">Efficient bulk processing and seamless financial reconciliation.</p>
+</div>
+<!-- Process Flow -->
+<div class="process-container">
+<!-- Connecting Line -->
+<div class="connection-line"></div>
+<!-- Arrows -->
+<i class="fa-solid fa-chevron-right arrow-indicator arrow-1"></i>
+<i class="fa-solid fa-chevron-right arrow-indicator arrow-2"></i>
+<!-- Step 1: Monthly Demand -->
+<div class="step-card step-1">
+<div class="icon-circle">
+<i class="fa-solid fa-calendar-check"></i>
+</div>
+<div class="step-content">
+<div class="step-number">STEP 01</div>
+<h3 class="step-title">Monthly Demand</h3>
+<p class="step-desc">
+                        One-click generation of EMIs, interest, and subscription demands for all members instantly.
+                    </p>
+</div>
+</div>
+<!-- Step 2: Recovery Import -->
+<div class="step-card step-2">
+<div class="icon-circle">
+<i class="fa-solid fa-file-import"></i>
+</div>
+<div class="step-content">
+<div class="step-number">STEP 02</div>
+<h3 class="step-title">Recovery Import</h3>
+<p class="step-desc">
+                        Bulk upload utility for processing salary recovery files from various office pay-centers.
+                    </p>
+</div>
+</div>
+<!-- Step 3: Short Recovery -->
+<div class="step-card step-3">
+<div class="icon-circle">
+<i class="fa-solid fa-scale-balanced"></i>
+</div>
+<div class="step-content">
+<div class="step-number">STEP 03</div>
+<h3 class="step-title">Short Recovery</h3>
+<p class="step-desc">
+                        Intelligent tracking and automatic adjustment of partial payments and short recoveries.
+                    </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

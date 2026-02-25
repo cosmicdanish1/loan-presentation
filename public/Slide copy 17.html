@@ -72,45 +72,55 @@
         border-color: rgba(52, 211, 153, 0.4);
         color: #34d399;
     }
-    .screenshots-container {
+    .screenshot-container {
         flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        overflow-y: auto;
-        padding-right: 5px;
-    }
-    .screenshots-container::-webkit-scrollbar {
-        width: 6px;
-    }
-    .screenshots-container::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 3px;
-    }
-    .screenshots-container::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 3px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
     }
     .screenshot-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         background: rgba(0, 0, 0, 0.4);
         border: 2px solid rgba(255, 255, 255, 0.15);
         border-radius: 10px;
         overflow: hidden;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    }
+    .screenshot-box.active {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .screenshot-box.slide-from-left {
+        transform: translateX(-100%);
+    }
+    .screenshot-box.slide-from-right {
+        transform: translateX(100%);
     }
     .screenshot-box img {
         width: 100%;
-        height: auto;
-        display: block;
+        height: 100%;
+        object-fit: contain;
+        background: #1a1a1a;
     }
     .screenshot-label {
-        background: rgba(0, 0, 0, 0.6);
-        padding: 6px 12px;
-        font-size: 11px;
-        color: #94a3b8;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 8px 12px;
+        font-size: 13px;
+        color: #e2e8f0;
         text-align: center;
         font-weight: 600;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
     h1 { font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
     h2 { font-family: 'Poppins', sans-serif; }
@@ -122,17 +132,44 @@
         transform: translate(-50%, -50%);
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 24px;
+        font-size: 28px;
         font-weight: 800;
-        border: 4px solid #0f172a;
+        border: 5px solid #0f172a;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
         z-index: 100;
+        animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.1); }
+    }
+    
+    .progress-indicator {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin-top: 8px;
+    }
+    
+    .progress-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+    }
+    
+    .progress-dot.active {
+        background: #34d399;
+        width: 24px;
+        border-radius: 4px;
     }
 </style>
 </head>
@@ -161,23 +198,30 @@
                 </h2>
             </div>
             
-            <div class="screenshots-container">
-                <div class="screenshot-box">
+            <div class="screenshot-container" id="oldContainer">
+                <div class="screenshot-box slide-from-left" data-index="0">
                     <img src="/img/old 1.png" alt="Old UI 1" />
                     <div class="screenshot-label">Legacy Interface</div>
                 </div>
-                <div class="screenshot-box">
+                <div class="screenshot-box slide-from-left" data-index="1">
                     <img src="/img/old 2.png" alt="Old UI 2" />
                     <div class="screenshot-label">Complex Navigation</div>
                 </div>
-                <div class="screenshot-box">
+                <div class="screenshot-box slide-from-left" data-index="2">
                     <img src="/img/old 3.png" alt="Old UI 3" />
                     <div class="screenshot-label">Manual Processes</div>
                 </div>
-                <div class="screenshot-box">
+                <div class="screenshot-box slide-from-left" data-index="3">
                     <img src="/img/old 5.png" alt="Old UI 5" />
                     <div class="screenshot-label">Limited Features</div>
                 </div>
+            </div>
+            
+            <div class="progress-indicator" id="oldProgress">
+                <div class="progress-dot active"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
             </div>
         </div>
 
@@ -189,27 +233,30 @@
                 </h2>
             </div>
             
-            <div class="screenshots-container">
-                <div class="screenshot-box">
+            <div class="screenshot-container" id="newContainer">
+                <div class="screenshot-box slide-from-right" data-index="0">
                     <img src="/img/new 1.png" alt="New UI 1" />
                     <div class="screenshot-label">Modern Interface</div>
                 </div>
-                <div class="screenshot-box">
+                <div class="screenshot-box slide-from-right" data-index="1">
                     <img src="/img/new 2.png" alt="New UI 2" />
                     <div class="screenshot-label">Intuitive Navigation</div>
                 </div>
-                <div class="screenshot-box">
+                <div class="screenshot-box slide-from-right" data-index="2">
                     <img src="/img/new 3.png" alt="New UI 3" />
                     <div class="screenshot-label">Automated Workflows</div>
                 </div>
-                <div class="screenshot-box">
+                <div class="screenshot-box slide-from-right" data-index="3">
                     <img src="/img/new 4.png" alt="New UI 4" />
                     <div class="screenshot-label">Enhanced Features</div>
                 </div>
-                <div class="screenshot-box">
-                    <img src="/img/new  5.png" alt="New UI 5" />
-                    <div class="screenshot-label">Advanced Capabilities</div>
-                </div>
+            </div>
+            
+            <div class="progress-indicator" id="newProgress">
+                <div class="progress-dot active"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
             </div>
         </div>
     </div>
@@ -219,5 +266,60 @@
 <div class="absolute top-20 right-40 w-64 h-64 bg-red-500 rounded-full mix-blend-overlay filter blur-3xl opacity-15 z-0"></div>
 <div class="absolute bottom-20 left-40 w-64 h-64 bg-green-500 rounded-full mix-blend-overlay filter blur-3xl opacity-15 z-0"></div>
 </div>
+
+<script>
+    let currentIndex = 0;
+    const oldScreenshots = document.querySelectorAll('#oldContainer .screenshot-box');
+    const newScreenshots = document.querySelectorAll('#newContainer .screenshot-box');
+    const oldDots = document.querySelectorAll('#oldProgress .progress-dot');
+    const newDots = document.querySelectorAll('#newProgress .progress-dot');
+    const totalScreenshots = Math.min(oldScreenshots.length, newScreenshots.length);
+    
+    function showScreenshot(index) {
+        // Hide all screenshots
+        oldScreenshots.forEach(box => {
+            box.classList.remove('active');
+            box.classList.add('slide-from-left');
+        });
+        newScreenshots.forEach(box => {
+            box.classList.remove('active');
+            box.classList.add('slide-from-right');
+        });
+        
+        // Update progress dots
+        oldDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+        newDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+        
+        // Show current screenshots with animation
+        setTimeout(() => {
+            if (oldScreenshots[index]) {
+                oldScreenshots[index].classList.add('active');
+                oldScreenshots[index].classList.remove('slide-from-left');
+            }
+            if (newScreenshots[index]) {
+                newScreenshots[index].classList.add('active');
+                newScreenshots[index].classList.remove('slide-from-right');
+            }
+        }, 50);
+    }
+    
+    function nextScreenshot() {
+        currentIndex = (currentIndex + 1) % totalScreenshots;
+        showScreenshot(currentIndex);
+    }
+    
+    // Initialize - show first screenshot
+    showScreenshot(0);
+    
+    // Auto-advance every 4 seconds
+    setInterval(nextScreenshot, 4000);
+    
+    // Optional: Click to advance manually
+    document.querySelector('.comparison-grid').addEventListener('click', nextScreenshot);
+</script>
 </body>
 </html>

@@ -30,7 +30,7 @@
         z-index: 10;
         width: 100%;
         height: 100%;
-        padding: 45px 60px;
+        padding: 40px 50px;
         display: flex;
         flex-direction: column;
     }
@@ -38,97 +38,120 @@
         width: 80px;
         height: 4px;
         background-color: #34d399;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
         border-radius: 2px;
     }
     .comparison-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 30px;
-        margin-top: 25px;
+        gap: 25px;
+        margin-top: 20px;
         flex: 1;
+        overflow: hidden;
     }
     .comparison-column {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 12px;
+        overflow: hidden;
     }
     .column-header {
         text-align: center;
-        padding: 12px;
+        padding: 10px;
         border-radius: 10px;
         border: 2px solid;
+        flex-shrink: 0;
     }
     .old-header {
-        background: rgba(239, 68, 68, 0.1);
-        border-color: rgba(239, 68, 68, 0.3);
+        background: rgba(239, 68, 68, 0.15);
+        border-color: rgba(239, 68, 68, 0.4);
         color: #f87171;
     }
     .new-header {
-        background: rgba(52, 211, 153, 0.1);
-        border-color: rgba(52, 211, 153, 0.3);
-        color: #34d399;
-    }
-    .screenshot-placeholder {
-        flex: 1;
-        background: rgba(0, 0, 0, 0.3);
-        border: 2px dashed rgba(255, 255, 255, 0.2);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 12px;
-        color: #94a3b8;
-        font-size: 14px;
-        padding: 20px;
-        text-align: center;
-    }
-    .comparison-points {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-    .point-item {
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 10px;
-        padding: 12px 16px;
-        display: flex;
-        align-items: start;
-        gap: 12px;
-        font-size: 13px;
-    }
-    .point-icon {
-        width: 24px;
-        height: 24px;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        font-size: 12px;
-    }
-    .old-icon {
-        background: rgba(239, 68, 68, 0.15);
-        color: #f87171;
-    }
-    .new-icon {
         background: rgba(52, 211, 153, 0.15);
+        border-color: rgba(52, 211, 153, 0.4);
         color: #34d399;
+    }
+    .screenshots-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow-y: auto;
+        padding-right: 5px;
+    }
+    .screenshots-container::-webkit-scrollbar {
+        width: 6px;
+    }
+    .screenshots-container::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 3px;
+    }
+    .screenshots-container::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+    }
+    .screenshot-box {
+        background: rgba(0, 0, 0, 0.4);
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        flex-shrink: 0;
+    }
+    .screenshot-box img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    .screenshot-label {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 6px 12px;
+        font-size: 11px;
+        color: #94a3b8;
+        text-align: center;
+        font-weight: 600;
     }
     h1 { font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
     h2 { font-family: 'Poppins', sans-serif; }
+    
+    .vs-badge {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 800;
+        border: 4px solid #0f172a;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        z-index: 100;
+    }
 </style>
 </head>
 <body>
 <div class="slide-container">
 <div class="bg-overlay"></div>
+
 <div class="content-wrapper">
-    <div class="title-accent"></div>
-    <h1 class="text-4xl font-bold text-white mb-2">UI Comparison: Old vs New</h1>
-    <p class="text-xl text-gray-400 font-light">Visual transformation of the user experience</p>
-    
+    <!-- Header -->
+    <div>
+        <div class="title-accent"></div>
+        <h1 class="text-4xl font-bold text-white mb-1">UI Comparison: Old vs New</h1>
+        <p class="text-xl text-gray-400 font-light">Visual transformation of the user experience</p>
+    </div>
+
+    <!-- VS Badge -->
+    <div class="vs-badge">VS</div>
+
+    <!-- Comparison Grid -->
     <div class="comparison-grid">
         <!-- Old UI Column -->
         <div class="comparison-column">
@@ -138,36 +161,22 @@
                 </h2>
             </div>
             
-            <div class="screenshot-placeholder">
-                <i class="fa-solid fa-image text-4xl opacity-30"></i>
-                <p class="font-semibold">Screenshot Placeholder</p>
-                <p class="text-xs opacity-70">Add old UI screenshot here</p>
-            </div>
-            
-            <div class="comparison-points">
-                <div class="point-item">
-                    <div class="point-icon old-icon">
-                        <i class="fa-solid fa-xmark"></i>
-                    </div>
-                    <span class="text-gray-300">Outdated desktop-only interface</span>
+            <div class="screenshots-container">
+                <div class="screenshot-box">
+                    <img src="/img/old 1.png" alt="Old UI 1" />
+                    <div class="screenshot-label">Legacy Interface</div>
                 </div>
-                <div class="point-item">
-                    <div class="point-icon old-icon">
-                        <i class="fa-solid fa-xmark"></i>
-                    </div>
-                    <span class="text-gray-300">Complex navigation with multiple windows</span>
+                <div class="screenshot-box">
+                    <img src="/img/old 2.png" alt="Old UI 2" />
+                    <div class="screenshot-label">Complex Navigation</div>
                 </div>
-                <div class="point-item">
-                    <div class="point-icon old-icon">
-                        <i class="fa-solid fa-xmark"></i>
-                    </div>
-                    <span class="text-gray-300">Manual data entry prone to errors</span>
+                <div class="screenshot-box">
+                    <img src="/img/old 3.png" alt="Old UI 3" />
+                    <div class="screenshot-label">Manual Processes</div>
                 </div>
-                <div class="point-item">
-                    <div class="point-icon old-icon">
-                        <i class="fa-solid fa-xmark"></i>
-                    </div>
-                    <span class="text-gray-300">Limited reporting capabilities</span>
+                <div class="screenshot-box">
+                    <img src="/img/old 5.png" alt="Old UI 5" />
+                    <div class="screenshot-label">Limited Features</div>
                 </div>
             </div>
         </div>
@@ -180,48 +189,35 @@
                 </h2>
             </div>
             
-            <div class="screenshot-placeholder">
-                <i class="fa-solid fa-image text-4xl opacity-30"></i>
-                <p class="font-semibold">Screenshot Placeholder</p>
-                <p class="text-xs opacity-70">Add new UI screenshot here</p>
-            </div>
-            
-            <div class="comparison-points">
-                <div class="point-item">
-                    <div class="point-icon new-icon">
-                        <i class="fa-solid fa-check"></i>
-                    </div>
-                    <span class="text-gray-300">Modern, intuitive React-based interface</span>
+            <div class="screenshots-container">
+                <div class="screenshot-box">
+                    <img src="/img/new 1.png" alt="New UI 1" />
+                    <div class="screenshot-label">Modern Interface</div>
                 </div>
-                <div class="point-item">
-                    <div class="point-icon new-icon">
-                        <i class="fa-solid fa-check"></i>
-                    </div>
-                    <span class="text-gray-300">Single-window workflow with smart navigation</span>
+                <div class="screenshot-box">
+                    <img src="/img/new 2.png" alt="New UI 2" />
+                    <div class="screenshot-label">Intuitive Navigation</div>
                 </div>
-                <div class="point-item">
-                    <div class="point-icon new-icon">
-                        <i class="fa-solid fa-check"></i>
-                    </div>
-                    <span class="text-gray-300">Automated calculations with validation</span>
+                <div class="screenshot-box">
+                    <img src="/img/new 3.png" alt="New UI 3" />
+                    <div class="screenshot-label">Automated Workflows</div>
                 </div>
-                <div class="point-item">
-                    <div class="point-icon new-icon">
-                        <i class="fa-solid fa-check"></i>
-                    </div>
-                    <span class="text-gray-300">Rich reports with PDF/Excel export</span>
+                <div class="screenshot-box">
+                    <img src="/img/new 4.png" alt="New UI 4" />
+                    <div class="screenshot-label">Enhanced Features</div>
+                </div>
+                <div class="screenshot-box">
+                    <img src="/img/new  5.png" alt="New UI 5" />
+                    <div class="screenshot-label">Advanced Capabilities</div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="text-center mt-4">
-        <p class="text-sm text-gray-500 italic">
-            <i class="fa-solid fa-info-circle mr-2"></i>
-            Replace placeholder boxes with actual screenshots for presentation
-        </p>
-    </div>
 </div>
+
+<!-- Decorative background elements -->
+<div class="absolute top-20 right-40 w-64 h-64 bg-red-500 rounded-full mix-blend-overlay filter blur-3xl opacity-15 z-0"></div>
+<div class="absolute bottom-20 left-40 w-64 h-64 bg-green-500 rounded-full mix-blend-overlay filter blur-3xl opacity-15 z-0"></div>
 </div>
 </body>
 </html>

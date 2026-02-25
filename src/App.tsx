@@ -6,15 +6,14 @@ import Slide3 from './slides/Slide3.tsx';
 import Slide4 from './slides/Slide4.tsx';
 import Slide5 from './slides/Slide5.tsx';
 import Slide6 from './slides/Slide6.tsx';
-import Slide7 from './slides/Slide7.tsx';
 import Slide8 from './slides/Slide8.tsx';
 import Slide9 from './slides/Slide9.tsx';
 import Slide10 from './slides/Slide10.tsx';
-import Slide11 from './slides/Slide11.tsx';
 import Slide12 from './slides/Slide12.tsx';
-import Slide13 from './slides/Slide13.tsx';
 import Slide14 from './slides/Slide14.tsx';
 import Slide15 from './slides/Slide15.tsx';
+import Slide16 from './slides/Slide16.tsx';
+import Slide17 from './slides/Slide17.tsx';
 
 interface SlideConfig {
   id: number;
@@ -26,18 +25,17 @@ const slides: SlideConfig[] = [
   { id: 1, component: Slide1, title: 'Bican Loan Management System' },
   { id: 2, component: Slide2, title: 'Project Overview' },
   { id: 3, component: Slide3, title: 'Technical Stack' },
-  { id: 4, component: Slide4, title: 'Administration & Governance' },
-  { id: 5, component: Slide5, title: 'Member Master' },
-  { id: 6, component: Slide6, title: 'Loan Lifecycle Management' },
-  { id: 7, component: Slide7, title: 'Deposit Schemes' },
-  { id: 8, component: Slide8, title: 'Intelligent Transaction Engine' },
-  { id: 9, component: Slide9, title: 'Automated Demand & Recovery' },
-  { id: 10, component: Slide10, title: 'Financial Reporting Suite' },
-  { id: 11, component: Slide11, title: 'Annual Financial Statements' },
+  { id: 4, component: Slide16, title: 'Key Features & Improvements' },
+  { id: 5, component: Slide17, title: 'UI Comparison: Old vs New' },
+  { id: 6, component: Slide4, title: 'Administration & Governance' },
+  { id: 7, component: Slide5, title: 'Member Master' },
+  { id: 8, component: Slide6, title: 'Loan Lifecycle Management' },
+  { id: 9, component: Slide8, title: 'Intelligent Transaction Engine' },
+  { id: 10, component: Slide9, title: 'Automated Demand & Recovery' },
+  { id: 11, component: Slide10, title: 'Financial Reporting Suite' },
   { id: 12, component: Slide12, title: 'Communication Hub' },
-  { id: 13, component: Slide13, title: 'Advanced Utilities' },
-  { id: 14, component: Slide14, title: 'User Experience' },
-  { id: 15, component: Slide15, title: 'Conclusion & Future Roadmap' },
+  { id: 13, component: Slide14, title: 'User Experience' },
+  { id: 14, component: Slide15, title: 'Conclusion & Future Roadmap' },
 ];
 
 function App() {

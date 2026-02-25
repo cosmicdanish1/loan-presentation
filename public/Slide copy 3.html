@@ -1,289 +1,371 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Technical Stack Architecture</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <style>
-        body { margin: 0; padding: 0; overflow: hidden; font-family: 'Inter', sans-serif; }
-        .slide-container {
-            width: 1280px;
-            height: 720px;
-            position: relative;
-            background-color: #0f172a;
-            background-image: url("https://page.gensparksite.com/slides_images/eb212d46a4ff388f994e1644d74e0071.webp");
-            background-size: cover;
-            background-position: center;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .bg-overlay {
-            position: absolute;
-            inset: 0;
-            background-color: rgba(15, 23, 42, 0.9);
-            z-index: 1;
-        }
-        
-        /* Layout */
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            padding: 40px 60px;
-        }
+    body { margin: 0; padding: 0; overflow: hidden; font-family: 'Inter', sans-serif; }
+    .slide-container {
+        width: 1280px;
+        height: 720px;
+        position: relative;
+        background-color: #0f172a;
+        background-image: url("https://page.gensparksite.com/slides_images/eb212d46a4ff388f994e1644d74e0071.webp");
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+    }
+    .bg-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(15, 23, 42, 0.88);
+        z-index: 1;
+    }
+    
+    .content-wrapper {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        padding: 45px 60px;
+        display: flex;
+        flex-direction: column;
+    }
 
-        .header-section {
-            position: absolute;
-            top: 40px;
-            left: 60px;
-            z-index: 20;
-        }
+    .title-accent {
+        width: 60px;
+        height: 4px;
+        background-color: #34d399;
+        margin-bottom: 12px;
+        border-radius: 2px;
+    }
 
-        .diagram-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 40px;
-        }
+    .main-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 30px;
+        flex: 1;
+    }
 
-        /* Glass Cards */
-        .tech-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
+    /* Left Column - App Preview */
+    .app-column {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 
-        .tech-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-        }
+    .screenshot-box {
+        background: rgba(0, 0, 0, 0.5);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        overflow: hidden;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+    }
+    
+    .screenshot-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    
+    .tech-badges {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .tech-badge {
+        background: rgba(52, 211, 153, 0.15);
+        border: 1px solid rgba(52, 211, 153, 0.3);
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #34d399;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
-        /* Stack Layout Specifics */
-        .stack-column {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            width: 600px;
-            position: relative;
-        }
+    /* Right Column - Tech Stack */
+    .stack-column {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+    }
 
-        .security-sidebar {
-            width: 200px;
-            margin-left: 24px;
-            display: flex;
-        }
+    .tech-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        transition: all 0.3s ease;
+    }
 
-        .security-card {
-            width: 100%;
-            background: rgba(245, 158, 11, 0.05);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            border-radius: 16px;
-        }
+    .tech-card:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.25);
+        transform: translateX(5px);
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
 
-        /* Connectors */
-        .connector {
-            position: absolute;
-            width: 2px;
-            background-color: rgba(255, 255, 255, 0.2);
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 0;
-        }
+    .icon-wrapper {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
+        font-size: 26px;
+        flex-shrink: 0;
+    }
 
-        /* Icons */
-        .icon-wrapper {
-            width: 56px;
-            height: 56px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            font-size: 24px;
-            flex-shrink: 0;
-        }
+    .theme-blue .icon-wrapper { 
+        background: rgba(59, 130, 246, 0.2); 
+        color: #60a5fa; 
+        border: 1px solid rgba(59, 130, 246, 0.3); 
+    }
+    .theme-purple .icon-wrapper { 
+        background: rgba(139, 92, 246, 0.2); 
+        color: #a78bfa; 
+        border: 1px solid rgba(139, 92, 246, 0.3); 
+    }
+    .theme-green .icon-wrapper { 
+        background: rgba(16, 185, 129, 0.2); 
+        color: #34d399; 
+        border: 1px solid rgba(16, 185, 129, 0.3); 
+    }
 
-        /* Color Themes */
-        .theme-blue .icon-wrapper { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
-        .theme-purple .icon-wrapper { background: rgba(139, 92, 246, 0.2); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.3); }
-        .theme-green .icon-wrapper { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-        .theme-teal .icon-wrapper { background: rgba(20, 184, 166, 0.2); color: #2dd4bf; border: 1px solid rgba(20, 184, 166, 0.3); }
-        .theme-orange { color: #fbbf24; }
+    .layer-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 4px;
+        font-weight: 600;
+    }
 
-        .layer-label {
-            position: absolute;
-            left: -140px;
-            top: 50%;
-            transform: translateY(-50%);
-            text-align: right;
-            width: 120px;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-        
-        .layer-label::after {
-            content: '';
-            position: absolute;
-            right: -20px;
-            top: 50%;
-            width: 15px;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.3);
-        }
+    .tech-name {
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-weight: 600;
+        margin-left: auto;
+    }
 
-        h1 { font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-        h2 { font-family: 'Poppins', sans-serif; }
-        
-        .tag {
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 4px;
-            background: rgba(255,255,255,0.1);
-            color: #ccc;
-            margin-left: 8px;
-        }
-    </style>
+    .tech-name-blue {
+        background: rgba(59, 130, 246, 0.2);
+        color: #60a5fa;
+    }
+    .tech-name-purple {
+        background: rgba(139, 92, 246, 0.2);
+        color: #a78bfa;
+    }
+    .tech-name-green {
+        background: rgba(16, 185, 129, 0.2);
+        color: #34d399;
+    }
+
+    h1 { font-family: 'Poppins', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    h2 { font-family: 'Poppins', sans-serif; }
+</style>
 </head>
 <body>
 <div class="slide-container">
 <div class="bg-overlay"></div>
-<!-- Title Header -->
-<div class="header-section">
-<div class="flex items-center gap-3 mb-2">
-<div class="w-10 h-1 bg-green-500 rounded-full"></div>
-<span class="text-green-400 uppercase tracking-widest text-sm font-bold">Architecture</span>
+
+<div class="content-wrapper">
+    <!-- Header -->
+    <div>
+        <div class="title-accent"></div>
+        <h1 class="text-4xl font-bold text-white mb-1">Technical Stack (The Engine)</h1>
+        <p class="text-gray-400 text-lg">Built with Electron.js, NestJS, and PostgreSQL</p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="main-content">
+        <!-- Left Column: App Preview -->
+        <div class="app-column">
+            <div class="screenshot-box" style="background: linear-gradient(135deg, #f5f5dc 0%, #e8e8d0 100%); padding: 0; position: relative;">
+                <!-- App Window Frame -->
+                <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: white;">
+                    <!-- Title Bar -->
+                    <div style="background: #2c3e50; color: white; padding: 8px 16px; display: flex; align-items: center; gap: 12px; font-size: 13px;">
+                        <i class="fa-brands fa-react" style="color: #61dafb;"></i>
+                        <span style="font-weight: 600;">Electron React App</span>
+                    </div>
+                    
+                    <!-- Menu Bar -->
+                    <div style="background: #34495e; color: white; padding: 8px 16px; display: flex; gap: 20px; font-size: 12px; border-bottom: 1px solid #2c3e50;">
+                        <span>File</span>
+                        <span>Administration</span>
+                        <span>Masters</span>
+                        <span>Transaction</span>
+                        <span>Reports</span>
+                        <span>Utility</span>
+                        <span>Help</span>
+                        <span>Exit</span>
+                        <span>Settings</span>
+                    </div>
+                    
+                    <!-- Toolbar -->
+                    <div style="background: #ecf0f1; padding: 10px 16px; display: flex; gap: 16px; font-size: 11px; border-bottom: 1px solid #bdc3c7;">
+                        <button style="padding: 4px 12px; background: white; border: 1px solid #bdc3c7; border-radius: 4px; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-save"></i> Save
+                        </button>
+                        <button style="padding: 4px 12px; background: white; border: 1px solid #bdc3c7; border-radius: 4px; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-xmark"></i> Cancel
+                        </button>
+                        <button style="padding: 4px 12px; background: white; border: 1px solid #bdc3c7; border-radius: 4px; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-trash"></i> Delete
+                        </button>
+                        <button style="padding: 4px 12px; background: white; border: 1px solid #bdc3c7; border-radius: 4px; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-rotate"></i> Refresh
+                        </button>
+                    </div>
+                    
+                    <!-- Main Content Area -->
+                    <div style="flex: 1; padding: 24px; background: #f5f5dc; overflow: hidden;">
+                        <div style="text-align: center; margin-bottom: 16px;">
+                            <p style="color: #7f8c8d; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">FINANCIAL MANAGEMENT SYSTEM</p>
+                            <h2 style="color: #2c3e50; font-size: 18px; font-weight: 700; margin-bottom: 4px;">FINANCIAL GOVERNANCE</h2>
+                            <p style="color: #7f8c8d; font-size: 10px;">LIVE FISCAL PARAMETERS</p>
+                        </div>
+                        
+                        <!-- Cards Grid -->
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 90%; margin: 0 auto;">
+                            <!-- Card 1 -->
+                            <div style="background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                    <i class="fa-solid fa-chart-line" style="color: #3498db; font-size: 16px;"></i>
+                                    <span style="font-size: 10px; color: #7f8c8d; text-transform: uppercase;">ANNUAL</span>
+                                </div>
+                                <div style="font-size: 24px; font-weight: 700; color: #2c3e50; margin-bottom: 4px;">0%</div>
+                                <div style="font-size: 10px; color: #7f8c8d;">Fund Interest Rate</div>
+                            </div>
+                            
+                            <!-- Card 2 -->
+                            <div style="background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                    <i class="fa-solid fa-percent" style="color: #2ecc71; font-size: 16px;"></i>
+                                    <span style="font-size: 10px; color: #7f8c8d; text-transform: uppercase;">PROFIT SHARE</span>
+                                </div>
+                                <div style="font-size: 24px; font-weight: 700; color: #2c3e50; margin-bottom: 4px;">0%</div>
+                                <div style="font-size: 10px; color: #7f8c8d;">Dividend Payout</div>
+                            </div>
+                            
+                            <!-- Card 3 -->
+                            <div style="background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                    <i class="fa-solid fa-shield-halved" style="color: #e74c3c; font-size: 16px;"></i>
+                                    <span style="font-size: 10px; color: #7f8c8d; text-transform: uppercase;">DEDUCTION</span>
+                                </div>
+                                <div style="font-size: 24px; font-weight: 700; color: #2c3e50; margin-bottom: 4px;">₹ 0</div>
+                                <div style="font-size: 10px; color: #7f8c8d;">Group Insurance (W)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Status Bar -->
+                    <div style="background: #ecf0f1; padding: 6px 16px; display: flex; align-items: center; gap: 12px; font-size: 10px; color: #2c3e50; border-top: 1px solid #bdc3c7;">
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span style="width: 8px; height: 8px; background: #2ecc71; border-radius: 50%;"></span>
+                            <span>Backend: Connected</span>
+                        </div>
+                        <span style="color: #7f8c8d;">v1.0.0 | development</span>
+                        <span style="margin-left: auto; color: #7f8c8d;">Bican Pvt Ltd</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tech-badges">
+                <div class="tech-badge">
+                    <i class="fa-brands fa-node-js text-xl"></i>
+                    <span>Electron.js</span>
+                </div>
+                <div class="tech-badge">
+                    <i class="fa-brands fa-node-js text-xl"></i>
+                    <span>NestJS</span>
+                </div>
+                <div class="tech-badge">
+                    <i class="fa-solid fa-database text-xl"></i>
+                    <span>PostgreSQL</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Tech Stack Cards -->
+        <div class="stack-column">
+            <!-- Card 1: Desktop Client -->
+            <div class="tech-card theme-blue">
+                <div class="icon-wrapper">
+                    <i class="fa-brands fa-react"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="layer-label">Presentation Layer</div>
+                    <div class="flex items-center gap-3">
+                        <h2 class="text-xl font-bold text-white">Desktop Client</h2>
+                        <span class="tech-name tech-name-blue">Electron.js</span>
+                    </div>
+                    <p class="text-gray-300 text-sm mt-2 leading-relaxed">
+                        Cross-platform desktop app with native performance. Built with React.js, TypeScript, and Vite.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 2: Backend Server -->
+            <div class="tech-card theme-purple">
+                <div class="icon-wrapper">
+                    <i class="fa-brands fa-node-js"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="layer-label">Application Layer</div>
+                    <div class="flex items-center gap-3">
+                        <h2 class="text-xl font-bold text-white">Backend Server</h2>
+                        <span class="tech-name tech-name-purple">NestJS</span>
+                    </div>
+                    <p class="text-gray-300 text-sm mt-2 leading-relaxed">
+                        Enterprise-grade Node.js framework with modular architecture and REST API support.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 3: Database -->
+            <div class="tech-card theme-green">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="layer-label">Data Layer</div>
+                    <div class="flex items-center gap-3">
+                        <h2 class="text-xl font-bold text-white">Database</h2>
+                        <span class="tech-name tech-name-green">PostgreSQL</span>
+                    </div>
+                    <p class="text-gray-300 text-sm mt-2 leading-relaxed">
+                        Robust relational database with TypeORM for type-safe queries. ACID compliant with JSONB support.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<h1 class="text-4xl font-bold text-white">Technical Stack (The Engine)</h1>
-<p class="text-gray-400 mt-2 text-lg">Built on modern, enterprise-grade technologies for maximum performance.</p>
-</div>
-<!-- Main Diagram Area -->
-<div class="diagram-container">
-<div class="flex items-stretch h-3/4">
-<!-- Central Stack -->
-<div class="stack-column justify-center">
-<!-- Connector Lines behind cards -->
-<div class="connector" style="top: 15%; height: 70%;"></div>
-<!-- Layer 1: Desktop App -->
-<div class="relative">
-<div class="layer-label">Presentation<br/>Layer</div>
-<div class="tech-card theme-blue">
-<div class="icon-wrapper">
-<i class="fa-brands fa-react"></i>
-</div>
-<div class="flex-1">
-<div class="flex justify-between items-center mb-1">
-<h2 class="text-xl font-bold text-white">Desktop Client</h2>
-<span class="text-xs font-mono text-blue-300 bg-blue-900 bg-opacity-40 px-2 py-1 rounded">Electron</span>
-</div>
-<p class="text-gray-300 text-sm">
-                                    Native Windows performance wrapping <strong>React.js</strong>. 
-                                    Powered by <strong>Vite</strong> for ultra-fast rendering.
-                                </p>
-<div class="mt-2 flex gap-2">
-<span class="tag">TypeScript</span>
-<span class="tag">Tailwind</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Layer 2: Backend API -->
-<div class="relative">
-<div class="layer-label">Application<br/>Layer</div>
-<div class="tech-card theme-purple">
-<div class="icon-wrapper">
-<i class="fa-brands fa-node-js"></i>
-</div>
-<div class="flex-1">
-<div class="flex justify-between items-center mb-1">
-<h2 class="text-xl font-bold text-white">Backend Server</h2>
-<span class="text-xs font-mono text-purple-300 bg-purple-900 bg-opacity-40 px-2 py-1 rounded">NestJS</span>
-</div>
-<p class="text-gray-300 text-sm">
-                                    Enterprise-grade Node.js framework. Modular architecture ensuring scalability and maintainability.
-                                </p>
-<div class="mt-2 flex gap-2">
-<span class="tag">REST API</span>
-<span class="tag">Microservices Ready</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Layer 3: Database -->
-<div class="relative">
-<div class="layer-label">Data<br/>Layer</div>
-<div class="tech-card theme-green">
-<div class="icon-wrapper">
-<i class="fa-solid fa-database"></i>
-</div>
-<div class="flex-1">
-<div class="flex justify-between items-center mb-1">
-<h2 class="text-xl font-bold text-white">Database</h2>
-<span class="text-xs font-mono text-green-300 bg-green-900 bg-opacity-40 px-2 py-1 rounded">PostgreSQL</span>
-</div>
-<p class="text-gray-300 text-sm">
-                                    Robust relational data management using <strong>TypeORM</strong> for type-safe database queries.
-                                </p>
-<div class="mt-2 flex gap-2">
-<span class="tag">ACID Compliant</span>
-<span class="tag">JSONB Support</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Right Sidebar: Security -->
-<div class="security-sidebar">
-<div class="security-card tech-card">
-<div class="mb-6 theme-orange">
-<div class="icon-wrapper mx-auto mb-4" style="margin-right: 0;">
-<i class="fa-solid fa-shield-halved"></i>
-</div>
-<h2 class="text-xl font-bold text-yellow-400">Security &amp;<br/>Governance</h2>
-</div>
-<div class="w-full px-4 space-y-4">
-<div class="bg-black bg-opacity-20 p-3 rounded-lg border border-yellow-500 border-opacity-20">
-<div class="text-yellow-200 font-semibold text-sm mb-1"><i class="fa-solid fa-key mr-2"></i>Auth</div>
-<p class="text-gray-400 text-xs">JWT Token-based Stateless Authentication</p>
-</div>
-<div class="bg-black bg-opacity-20 p-3 rounded-lg border border-yellow-500 border-opacity-20">
-<div class="text-yellow-200 font-semibold text-sm mb-1"><i class="fa-solid fa-user-lock mr-2"></i>Access</div>
-<p class="text-gray-400 text-xs">Role-Based Access Control (RBAC)</p>
-</div>
-<div class="bg-black bg-opacity-20 p-3 rounded-lg border border-yellow-500 border-opacity-20">
-<div class="text-yellow-200 font-semibold text-sm mb-1"><i class="fa-solid fa-file-contract mr-2"></i>Audit</div>
-<p class="text-gray-400 text-xs">Complete Transaction Logging</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Decorative background blobs -->
+
+<!-- Decorative background elements -->
 <div class="absolute top-20 right-40 w-64 h-64 bg-purple-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 z-0"></div>
 <div class="absolute bottom-20 left-40 w-64 h-64 bg-blue-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 z-0"></div>
 </div>

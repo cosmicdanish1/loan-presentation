@@ -8,7 +8,6 @@ import Slide5 from './slides/Slide5.tsx';
 import Slide6 from './slides/Slide6.tsx';
 import Slide8 from './slides/Slide8.tsx';
 import Slide9 from './slides/Slide9.tsx';
-import Slide10 from './slides/Slide10.tsx';
 import Slide12 from './slides/Slide12.tsx';
 import Slide14 from './slides/Slide14.tsx';
 import Slide15 from './slides/Slide15.tsx';
@@ -32,10 +31,9 @@ const slides: SlideConfig[] = [
   { id: 8, component: Slide6, title: 'Loan Lifecycle Management' },
   { id: 9, component: Slide8, title: 'Intelligent Transaction Engine' },
   { id: 10, component: Slide9, title: 'Automated Demand & Recovery' },
-  { id: 11, component: Slide10, title: 'Financial Reporting Suite' },
-  { id: 12, component: Slide12, title: 'Communication Hub' },
-  { id: 13, component: Slide14, title: 'User Experience' },
-  { id: 14, component: Slide15, title: 'Conclusion & Future Roadmap' },
+  { id: 11, component: Slide12, title: 'Communication Hub' },
+  { id: 12, component: Slide14, title: 'User Experience' },
+  { id: 13, component: Slide15, title: 'Conclusion & Future Roadmap' },
 ];
 
 function App() {
